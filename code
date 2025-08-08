@@ -1,0 +1,75 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    Scanner input = new Scanner(System.in);
+	    Scanner input2 = new Scanner(System.in);
+	    
+	    
+		System.out.print("Enter the number of student that you want: ");
+		int student = input.nextInt();
+		
+		String studentName[] = new String[student];
+		double grades[][] = new double[student][3];
+		double average[] = new double[student];
+		
+		for (int i = 0; i < student; i++) {
+		
+		System.out.println("-------- Student Name --------");
+		System.out.print("Enter the name of student " + (i + 1) + " : ");
+		studentName[i] = input2.nextLine();
+		
+	
+		double totalGrades = 0;
+		System.out.println("---------- Grades --------");
+		for (int x = 0; x < 3; x++) {
+		System.out.print("Enter the grade(s) for your student: ");
+		
+		grades[i][x] = input.nextDouble();
+		
+		totalGrades += grades[i][x];
+		}
+		
+		average[i] = totalGrades / 3.0;
+		
+		}
+		
+		String bestStudent;
+		
+		System.out.println("\n------------------ GRADE SUMMARY ---------------------\n");
+        System.out.printf("%-15s %-10s %-10s %-10s %-10s%n", 
+        "Name", "1st Grade", "2nd Grade", "3rd Grade", "Average");
+        System.out.println(" ");
+        
+        for (int j = 0; j < student; j++) {
+        System.out.printf("\n%-15s %-10.2f %-10.2f %-10.2f %-10.2f%n",
+        studentName[j], grades[j][0], grades[j][1], grades[j][2], average[j]);
+        }
+        System.out.println("\n------------------------------------------------------");
+        double highestAverage = average[0];
+        String bestStudents = studentName[0];
+        
+        for (int j = 1; j < student; j++) {
+            
+        if (average[j] > highestAverage) 
+        {
+        highestAverage = average[j];
+        bestStudents = studentName[j]; 
+        }
+        else if (average[j] == highestAverage) 
+        {
+            
+        bestStudents += ", " + studentName[j]; 
+            }
+        }
+        
+        System.out.println("\nTop Student(s): " + bestStudents);
+        System.out.printf(" Average grade: %.2f%n", highestAverage);
+		
+		
+		
+		
+		
+	}
+}
